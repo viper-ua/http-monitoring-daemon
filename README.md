@@ -4,23 +4,43 @@ Simple daemon for monitoring availability of HTTP resources
 
 ## How to work with
 - install dependencies
-```
+```bash
 gem install mail
+gem install daemons
+```
+
+- change mail settings in `monitor.rb`, see details below
+
+- make control script executable
+```bash
+chmod +x monitor_control
 ```
 
 - run daemon
+```bash
+./monitor_control start
 ```
-ruby monitor.rb
-```
+  - run without "daemonization"
+  Use key `-t` or `--ontop` when running `monitor_control`
 
 - terminate daemon
+```bash
+./monitor_control stop
 ```
-kill XXXX
+
+- check daemon running status
+```bash
+./monitor_control status
+``` 
+
+- other options, see output of:
+```bash
+./monitor_control help
 ```
->where XXXX - process id of script 
+
 
 ## Change some settings
-Mail server settings can be adjusted in script section as below:
+Default mail settings are to send mail to localhost, port 25 (as example, Postfix). They can be adjusted in below section inside script body:
 ``` ruby
 Mail.defaults do
   delivery_method :smtp, { :address              => "localhost",
@@ -33,6 +53,7 @@ Mail.defaults do
                            :openssl_verify_mode  => OpenSSL::SSL::VERIFY_NONE }
 end
 ```
+
 Mail addresses and body can be adjusted in this section:
 ``` ruby
   Mail.deliver do
