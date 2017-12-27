@@ -20,8 +20,7 @@ chmod +x monitor_control
 ```bash
 ./monitor_control start
 ```
-  - run without "daemonization"
-  Use key `-t` or `--ontop` when running `monitor_control`
+> To run without "daemonization", use key `-t` or `--ontop` when running `monitor_control`
 
 - terminate daemon
 ```bash
