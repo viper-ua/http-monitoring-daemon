@@ -2,8 +2,7 @@ require 'net/http'
 require 'mail'
 
 URI_TO_CHECK = [ 'https://pokupon.ua',
-                 'https://partner.pokupon.ua',
-                 'http://localhost:3000'
+                 'https://partner.pokupon.ua'
                ].freeze
 
 Mail.defaults do
@@ -20,9 +19,10 @@ end
 def send_alert_mail(text_uri, old_state, new_state)
   Mail.deliver do
     from    'donotreply@localhost'
-    to      'someone@example.com'
+    to      'xxx@gmail.com'
     subject 'Monitored resource has changed its state'
-    body    "Resource #{text_uri} changed state from #{old_state} to #{new_state}"
+    body    "Resource #{text_uri} changed state from #{old_state} to #{new_state}\n"\
+           +"Time: #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}"
   end
   puts "Resource #{text_uri} changed state from #{old_state} to #{new_state}" 
 end
