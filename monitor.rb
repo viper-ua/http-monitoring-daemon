@@ -18,7 +18,6 @@ Mail.defaults do
 end
 
 def send_alert_mail(text_uri, old_state, new_state)
-
   Mail.deliver do
     from    'donotreply'
     to      'someone@example.com'
@@ -47,5 +46,4 @@ while true do
     last_states[text_uri] = new_state
   end
   sleep(60)
-
 end
