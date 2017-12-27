@@ -19,7 +19,7 @@ end
 
 def send_alert_mail(text_uri, old_state, new_state)
   Mail.deliver do
-    from    'donotreply'
+    from    'donotreply@localhost'
     to      'someone@example.com'
     subject 'Monitored resource has changed its state'
     body    "Resource #{text_uri} changed state from #{old_state} to #{new_state}"
